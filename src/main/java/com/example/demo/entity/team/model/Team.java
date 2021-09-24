@@ -1,9 +1,10 @@
 package com.example.demo.entity.team.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.example.demo.entity.member.model.MemberMyfair;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Team {
@@ -12,6 +13,9 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String teamName;
+
+    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
+    private List<MemberMyfair> members = new ArrayList<>();
 
     public Team() {
     }
@@ -26,5 +30,9 @@ public class Team {
 
     public String getTeamName() {
         return teamName;
+    }
+
+    public List<MemberMyfair> getMembers() {
+        return members;
     }
 }

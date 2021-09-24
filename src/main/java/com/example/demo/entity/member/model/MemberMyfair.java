@@ -1,9 +1,8 @@
 package com.example.demo.entity.member.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.example.demo.entity.team.model.Team;
+
+import javax.persistence.*;
 
 @Entity
 public class MemberMyfair {
@@ -11,6 +10,9 @@ public class MemberMyfair {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Team team;
 
     public MemberMyfair() {
     }
@@ -24,11 +26,25 @@ public class MemberMyfair {
         this.name = name;
     }
 
+    public MemberMyfair(String name, Team team) {
+        this.name = name;
+        this.team = team;
+    }
+
+    public void addTeam(Team team) {
+        this.team = team;
+//        team.getMembers().add(this);
+    }
+
     public Long getId() {
         return id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public Team getTeam() {
+        return team;
     }
 }
