@@ -11,7 +11,7 @@ public class MemberMyfair {
     private Long id;
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Team team;
 
     public MemberMyfair() {

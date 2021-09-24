@@ -60,4 +60,22 @@ class TeamRepositoryTest {
         Assertions.assertThat(findTeam.getMembers().get(0).getId()).isEqualTo(findMember.getId());
         Assertions.assertThat(findTeam.getMembers()).hasSize(2);
     }
+
+    @Test
+    @Transactional
+    public void 양방향_주인_확인() {
+        Team team = new Team("team");
+        teamRepository.save(team);
+
+        MemberMyfair member1 = new MemberMyfair("name1");
+        member1.addTeam(team);
+        MemberMyfair member2 = new MemberMyfair("name2");
+        member2.addTeam(team);
+
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        Team findTeam = teamRepository.findById(team.getId()).get();
+        Assertions.assertThat(findTeam.getMembers()).hasSize(2);
+    }
 }

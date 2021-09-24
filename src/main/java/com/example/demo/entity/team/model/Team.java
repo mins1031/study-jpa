@@ -14,7 +14,7 @@ public class Team {
     private Long id;
     private String teamName;
 
-    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "team")
     private List<MemberMyfair> members = new ArrayList<>();
 
     public Team() {
