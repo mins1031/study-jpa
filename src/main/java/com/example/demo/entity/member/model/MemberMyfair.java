@@ -11,24 +11,14 @@ public class MemberMyfair {
     private Long id;
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Team team;
 
     public MemberMyfair() {
     }
 
-    public MemberMyfair(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     public MemberMyfair(String name) {
         this.name = name;
-    }
-
-    public MemberMyfair(String name, Team team) {
-        this.name = name;
-        this.team = team;
     }
 
     public void addTeam(Team team) {
