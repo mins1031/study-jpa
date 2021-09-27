@@ -42,7 +42,7 @@ class MemberMyfairRepositoryTest {
         Assertions.assertThat(savedMember.getAddress().getState()).isEqualTo(state);
         Assertions.assertThat(savedMember.getAddress().getZipCode()).isEqualTo(zipCode);
 
-        MemberMyfair savedMember2 = memberRepository.findByState(state).get(0);
+        MemberMyfair savedMember2 = memberRepository.findByAddressState(state).get(0);
 
         Assertions.assertThat(savedMember2.getId()).isEqualTo(member.getId());
         Assertions.assertThat(savedMember2.getAddress().getState()).isEqualTo(state);

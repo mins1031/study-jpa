@@ -13,5 +13,5 @@ public interface MemberRepository extends JpaRepository<MemberMyfair, Long> {
     @EntityGraph(attributePaths = {"team"})
     Optional<MemberMyfair> findById(Long aLong);
 
-    List<MemberMyfair> findByState(String state);
+    List<MemberMyfair> findByAddressState(String state);
 }
