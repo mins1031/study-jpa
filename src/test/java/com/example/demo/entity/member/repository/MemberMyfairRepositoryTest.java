@@ -1,5 +1,6 @@
 package com.example.demo.entity.member.repository;
 
+import com.example.demo.entity.address.Address;
 import com.example.demo.entity.member.model.MemberMyfair;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -22,5 +23,23 @@ class MemberMyfairRepositoryTest {
 
         Assertions.assertThat(savedMember.getId()).isNotNull();
         Assertions.assertThat(savedMember.getName()).isEqualTo(name);
+    }
+
+    @DisplayName("Embedded 테스트")
+    @Test
+    void embedded() {
+        String name = "myFair";
+        String state = "강남구";
+        String zipCode = "01234";
+        Address address = new Address(state, zipCode);
+
+        MemberMyfair member = new MemberMyfair(name, address);
+        member = memberRepository.save(member);
+
+        MemberMyfair savedMember = memberRepository.findById(member.getId()).get();
+
+        Assertions.assertThat(savedMember.getId()).isEqualTo(member.getId());
+        Assertions.assertThat(savedMember.getAddress().getState()).isEqualTo(state);
+        Assertions.assertThat(savedMember.getAddress().getZipCode()).isEqualTo(zipCode);
     }
 }

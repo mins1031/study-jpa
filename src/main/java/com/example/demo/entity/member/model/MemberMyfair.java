@@ -1,5 +1,6 @@
 package com.example.demo.entity.member.model;
 
+import com.example.demo.entity.address.Address;
 import com.example.demo.entity.team.model.Team;
 
 import javax.persistence.*;
@@ -14,11 +15,19 @@ public class MemberMyfair {
     @ManyToOne(fetch = FetchType.LAZY)
     private Team team;
 
+    @Embedded
+    private Address address;
+
     public MemberMyfair() {
     }
 
     public MemberMyfair(String name) {
         this.name = name;
+    }
+
+    public MemberMyfair(String name, Address address) {
+        this.name = name;
+        this.address = address;
     }
 
     public void addTeam(Team team) {
@@ -36,5 +45,9 @@ public class MemberMyfair {
 
     public Team getTeam() {
         return team;
+    }
+
+    public Address getAddress() {
+        return address;
     }
 }

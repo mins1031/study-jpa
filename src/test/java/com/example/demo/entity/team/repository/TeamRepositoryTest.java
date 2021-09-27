@@ -239,6 +239,9 @@ class TeamRepositoryTest {
         Team findTeam = teamRepository.findById(save.getId()).get();
         findTeam.getMembers().remove(1);
 
+        em.flush();
+        em.clear();
+
         Optional<MemberMyfair> findEddy = memberRepository.findById(eddy.getId());
         List<MemberMyfair> allMembers = memberRepository.findAll();
         //Then
