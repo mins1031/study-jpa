@@ -14,6 +14,8 @@ public class Team {
     private Long id;
     private String teamName;
 
+
+
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<MemberMyfair> members = new ArrayList<>();
 
